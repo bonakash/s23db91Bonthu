@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  h2 Images of Kitchen items  
+  - var image_names = ["cakepans.jpg", "pans.jpg", "glasses.jpg","knives.jpg", "whiskers.jpg"];
+    div(style="display:flex")
+     - for(let j=0;j<3;j++){
+        - let rdx=Math.floor(Math.random()*5)
+        div(style="border : 2px solid black; height:500px; width:500px; margin-left: 15px")
+          img(src=`/images/${image_names[rdx]}` alt=`${rdz}`  width="100%")
+     - }

@@ -1,0 +1,17 @@
+extends layout
+ 
+block content
+  h1= title
+  - const results = [{ itemName: "Pans", quantity : 5, category:"Cookware"},{ itemName: "Cake Pans", quantity: 7, category: "Bakeware" },{ itemName: "Knives", quantity: 10, category: "Cutlery" },{ itemName: "Whisks", quantity: 3, category: "Utensils" }, { itemName: "Glasses", quantity: 6, category: "Drinkware" }, ]
+  script.
+    function buy(index){
+      alert("You purchased item "+ (index+1));
+    }
+  div.container-fluid
+    div.row
+        each item, index in results
+          div.col-sm-2(onclick = `buy(${index})`)
+             p Item Name: #{item.itemName}
+             p Quantity: #{item.quantity}
+             p Item Category: #{item.category}
+             
