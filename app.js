@@ -50,21 +50,21 @@ console.error(err)
 
 let instance2 = new Kitchen({itemName:"Cake Pans", category:'Bakeware', quantity:7});
 instance2.save().then(doc=>{
-console.log("First object saved")}
+console.log("Second object saved")}
 ).catch(err=>{
 console.error(err)
 });
 
 let instance3 = new Kitchen({itemName:"Knives", category:'Cutlery', quantity:10});
 instance3.save().then(doc=>{
-console.log("First object saved")}
+console.log("Third object saved")}
 ).catch(err=>{
 console.error(err)
 });
 
 let instance4 = new Kitchen({itemName:"Whisks", category:'Utensils', quantity:3});
 instance4.save().then(doc=>{
-console.log("First object saved")}
+console.log("Forth object saved")}
 ).catch(err=>{
 console.error(err)
 });
