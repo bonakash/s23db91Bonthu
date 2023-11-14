@@ -38,39 +38,39 @@ console.log("Connection to DB succeeded")});
 var Kitchen = require("./models/kitchenSchema");
 
 // We can seed the collection if needed on server start
-async function recreateDB(){
-// Delete everything
-await Kitchen.deleteMany();
-let instance1 = new Kitchen({itemName:"Pans", category:'Cookware', quantity:5});
-instance1.save().then(doc=>{
-console.log("First object saved")}
-).catch(err=>{
-console.error(err)
-});
+// async function recreateDB(){
+// // Delete everything
+// await Kitchen.deleteMany();
+// let instance1 = new Kitchen({itemName:"Pans", category:'Cookware', quantity:5});
+// instance1.save().then(doc=>{
+// console.log("First object saved")}
+// ).catch(err=>{
+// console.error(err)
+// });
 
-let instance2 = new Kitchen({itemName:"Cake Pans", category:'Bakeware', quantity:7});
-instance2.save().then(doc=>{
-console.log("Second object saved")}
-).catch(err=>{
-console.error(err)
-});
+// let instance2 = new Kitchen({itemName:"Cake Pans", category:'Bakeware', quantity:7});
+// instance2.save().then(doc=>{
+// console.log("Second object saved")}
+// ).catch(err=>{
+// console.error(err)
+// });
 
-let instance3 = new Kitchen({itemName:"Knives", category:'Cutlery', quantity:10});
-instance3.save().then(doc=>{
-console.log("Third object saved")}
-).catch(err=>{
-console.error(err)
-});
+// let instance3 = new Kitchen({itemName:"Knives", category:'Cutlery', quantity:10});
+// instance3.save().then(doc=>{
+// console.log("Third object saved")}
+// ).catch(err=>{
+// console.error(err)
+// });
 
-let instance4 = new Kitchen({itemName:"Whisks", category:'Utensils', quantity:3});
-instance4.save().then(doc=>{
-console.log("Forth object saved")}
-).catch(err=>{
-console.error(err)
-});
-}
-let reseed = true;
-if (reseed) {recreateDB();}
+// let instance4 = new Kitchen({itemName:"Whisks", category:'Utensils', quantity:3});
+// instance4.save().then(doc=>{
+// console.log("Forth object saved")}
+// ).catch(err=>{
+// console.error(err)
+// });
+// }
+// let reseed = true;
+// if (reseed) {recreateDB();}
 
 
 

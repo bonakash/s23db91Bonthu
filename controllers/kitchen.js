@@ -11,9 +11,18 @@ exports.kitchen_list = async function(req, res) {
     }
     };
 // for a specific Kitchen.
-exports.kitchen_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Kitchen detail: ' + req.params.id);
-};
+exports.kitchen_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Kitchen.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+
+
 // Handle Kitchen create on POST.
 exports.kitchen_create_post = async function(req, res) {
     console.log(req.body)
@@ -41,8 +50,23 @@ exports.kitchen_create_post = async function(req, res) {
     res.send('NOT IMPLEMENTED: Kitchen delete DELETE ' + req.params.id);
     };
     // Handle Kitchen update form on PUT.
-    exports.kitchen_update_put = function(req, res) {
-    res.send('NOT IMPLEMENTED: Kitchen update PUT' + req.params.id);
+    exports.kitchen_update_put = async function(req, res) {
+        console.log(`update on id ${req.params.id} with body
+        ${JSON.stringify(req.body)}`)
+        try {
+        let toUpdate = await Kitchen.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.itemName) toUpdate.itemName = req.body.itemName;
+        if(req.body.quantity) toUpdate.quantity = req.body.quantity;
+        if(req.body.category) toUpdate.category = req.body.category;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+        } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
+        }
     };
 
 // VIEWS
