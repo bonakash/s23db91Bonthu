@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  style.
+    .kitchen-container {
+      margin-top: 20px;
+    }
+
+    .kitchenAttr {
+      font-weight: bold;
+    }
+
+    .kitchen-info {
+      margin-bottom: 10px;
+    }
+
+    .kitchen-details {
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+  h1= title 
+
+  if toShow == null
+    h2 No kitchen item to delete
+  else
+    - let kitchenid = toShow._id
+    - let kitchenitem = toShow.itemName
+    - let kitchencategory = toShow.category
+    - let kitchenquantity = toShow.quantity
+
+    .kitchen-container
+      .kitchen-details
+        .row.kitchen-info
+          .col-md-3
+            div(class='kitchenAttr mr-3') Kitchen ID is:
+          .col-md-3
+            div #{kitchenid}
+
+        .row.kitchen-info
+          .col-md-3
+            div(class='kitchenAttr mr-3') Kitchen item is:
+          .col-md-3
+            div #{kitchenitem}
+            
+        .row.kitchen-info
+          .col-md-3
+            div(class='kitchenAttr mr-3') Kitchen category is:
+          .col-md-3
+            div #{kitchencategory}
+            
+        .row.kitchen-info
+          .col-md-3
+            div(class='kitchenAttr mr-3') Kitchen quantity is:
+          .col-md-3
+            div #{kitchenquantity}

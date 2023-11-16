@@ -46,8 +46,16 @@ exports.kitchen_create_post = async function(req, res) {
 
     
     // Handle Kitchen delete form on DELETE.
-    exports.kitchen_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: Kitchen delete DELETE ' + req.params.id);
+    exports.kitchen_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Kitchen.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
     };
     // Handle Kitchen update form on PUT.
     exports.kitchen_update_put = async function(req, res) {
@@ -79,5 +87,63 @@ exports.kitchen_view_all_Page = async function(req, res) {
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
+    }
+    };
+
+    // Handle a show one view with id specified by query
+    exports.kitchen_view_one_Page = async function(req, res) {
+        console.log("single view for id " + req.query.id)
+        try{
+        result = await Kitchen.findById( req.query.id)
+        res.render('kitchendetail',
+        { title: 'Kitchen Detail', toShow: result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+    };
+
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.kitchen_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('kitchencreate', { title: 'Kitchen Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+};
+
+
+
+// Handle building the view for updating a Kitchen.
+// query provides the id
+exports.kitchen_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await Kitchen.findById(req.query.id)
+    res.render('kitchenupdate', { title: 'Kitchen Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle a delete one view with id from query
+exports.kitchen_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Kitchen.findById(req.query.id)
+    res.render('kitchendelete', { title: 'Kitchen Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
     };
