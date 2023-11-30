@@ -4,6 +4,8 @@ block content
   h1= title
   - let items = results;
 
+  div(class="row m-1")
+    button.btn(class="btn-success", onclick="dispatch('/employee/create')") Create New Kitchen Item
   div(class="container-fluid")
     each item in items
       div(class="row p-2 border mb-2")
