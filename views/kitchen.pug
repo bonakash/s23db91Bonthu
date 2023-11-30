@@ -1,18 +1,50 @@
 extends layout
+
 block content
   h1= title
   - let items = results;
-  div(class="container-fluid")
-    div(class="row m-1")
-      each item in items
-        - let destination = `dispatch(\"/kitchen/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.itemName}(#{item.category}) Quantity is #{item.quantity}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-    script.
-      function dispatch(path){
-        window.location.href=path
-      }
+  div(class="container-fluid")
+    each item in items
+      div(class="row p-2 border mb-2")
+        div(class="col")
+          | Item #{item.itemName} (#{item.category}) Quantity is #{item.quantity}
+        div(class="col-auto")
+          button.btn.btn-primary.ml-1(type="button", onclick=`dispatch("/kitchen/detail?id=${item._id}")`)
+            | Detail
+
+          button.btn.btn-warning.ml-1(type="button", onclick=`dispatch("/kitchen/update?id=${item._id}")`)
+            | Update
+
+          button.btn.btn-danger.ml-1(type="button", onclick=`dispatch("/kitchen/delete?id=${item._id}")`)
+            | Delete
+
+  script(src="/js/your-script.js")
+
+
+//- extends layout
+//- block content
+//-   h1= title
+//-   - let items = results;
+//-   div(class="container-fluid")
+//-     div(class="row m-1")
+//-       each item in items
+//-         - let destination = `dispatch(\"/kitchen/detail?id=${item._id}\")`
+//-         div(class="row-sm-2", class="m-1") Item #{item.itemName}(#{item.category}) Quantity is #{item.quantity}
+//-           button.btn( class="btn-primary ml-1", onclick= destination) Detail
+
+//-         - let destination1 = `dispatch(\"/kitchen/update?id=${item._id}\")`
+//-         div(class="row-sm-2", class="m-1") Item #{item.itemName}(#{item.category}) Quantity is #{item.quantity}
+//-           button.btn( class="btn-primary ml-1", onclick= destination1) Update
+
+//-         - let destination2 = `dispatch(\"/kitchen/delete?id=${item._id}\")`
+//-         div(class="row-sm-2", class="m-1") Item #{item.itemName}(#{item.category}) Quantity is #{item.quantity}
+//-           button.btn( class="btn-primary ml-1", onclick= destination2) Delete
+
+//-     script.
+//-       function dispatch(path){
+//-         window.location.href=path
+//-       }
 
 //- extends layout
 

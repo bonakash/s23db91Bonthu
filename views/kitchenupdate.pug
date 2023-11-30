@@ -10,37 +10,37 @@ block content
     - let category = toShow.category
     - let quantity = toShow.quantity
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{kitchenid}
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{kitchenid}
 
-  - let actionid = "/resource/kitchen/" + kitchenid
-  form(id='KitchenForm', action= actionid, method="PUT")
-    div.form-group
-      label.kitchenAttr(for='itemName') Kitchen Item Name
-      input#itemName(type='text', name='itemName', value= itemName )
-    div.form-group
-      label.kitchenAttr(for='category') Kitchen Category
-      input#category(type='text', name='category', value= category )
-    div.form-group
-      label.kitchenAttr(for='quantity') Quantity
-      input#quantity(type='number', name='quantity', value= quantity )
-    input(type="submit")
+    - let actionid = "/resource/kitchen/" + kitchenid
+    form(id='KitchenForm', action= actionid, method="PUT")
+      div.form-group
+        label.kitchenAttr(for='itemName') Kitchen Item Name
+        input#itemName(type='text', name='itemName', value= itemName )
+      div.form-group
+        label.kitchenAttr(for='category') Kitchen Category
+        input#category(type='text', name='category', value= category )
+      div.form-group
+        label.kitchenAttr(for='quantity') Quantity
+        input#quantity(type='number', name='quantity', value= quantity )
+      input(type="submit")
 
-  script.
-    document.forms['KitchenForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO: do something here to show the user that the form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeeded");
-        // TODO: handle the response body
-      }).catch((error) => {
-        // TODO: handle the error
-        alert("Update failed: " + error);
+    script.
+      document.forms['KitchenForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO: do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO: handle the response body
+        }).catch((error) => {
+          // TODO: handle the error
+          alert("Update failed: " + error);
+        });
       });
-    });
