@@ -1,18 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p This is a message as part of assignment.
-  button(type="button", class="btn btn-info", onclick="goFaster()") Press me for contents 
-  div#faster  Increase the speed
-  script.
-    var mph = 20;
-    var change = 1;
+  if !user
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  else
+    p You are currently logged in as #{user.username}
+    a(href="/kitchen") Take me to Kitchen Items
+    br
+    a(href="/logout") Logout
 
-    function goFaster() {
-      mph += change;
-      change++;
-      var fasterDiv = document.getElementById("faster");
-      fasterDiv.textContent = "MPH" + mph + " with change " + change;
-    }
+
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to #{title}
+//-   p This is a message as part of assignment.
+//-   button(type="button", class="btn btn-info", onclick="goFaster()") Press me for contents 
+//-   div#faster  Increase the speed
+//-   script.
+//-     var mph = 20;
+//-     var change = 1;
+
+//-     function goFaster() {
+//-       mph += change;
+//-       change++;
+//-       var fasterDiv = document.getElementById("faster");
+//-       fasterDiv.textContent = "MPH" + mph + " with change " + change;
+//-     }
+
